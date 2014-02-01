@@ -1,11 +1,12 @@
 yilu-counter
-============
+========================
 Name: Yilu Su
 CMPUT 301  A1
 Instructor: Abram Hindle
-============
-This is a simple counter app. Click the icon to launch after install. See eclass page for detailed functionality of this app.
-============
+========================
+This is a simple counter app. Click the icon to launch after install. 
+See eclass page for detailed functionality of this app.
+========================
 Copyright 2013 Yilu Su
 
 Licensed under the Apache License, Version 2.0 (the "License");
