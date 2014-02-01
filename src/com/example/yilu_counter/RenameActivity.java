@@ -46,7 +46,6 @@ public class RenameActivity extends Activity {
             			Toast.LENGTH_SHORT).show();
             } else {
             	Boolean exist = false;
-//            	dataHandler ;
             	counterList = dataHandler.loadFromFile();
             	for (int i=0; i<counterList.size(); i++) {
             		if (counterList.get(i).readName().equals(input)) {
@@ -57,9 +56,15 @@ public class RenameActivity extends Activity {
             	if (exist) {
             		Toast.makeText(RenameActivity.this,R.string.exist,Toast.LENGTH_SHORT).show();
             	} else {
-            		/*
-            		 * change name in database
-            		 */
+            		/* change name in database */
+            		int pos;
+            		for (pos = 0; pos < counterList.size(); pos++) {
+            			if (counterList.get(pos).readName().equals(old)) {
+            				counterList.get(pos).reName(input);
+            				break;
+            			}
+            		}
+            		dataHandler.saveToFile(counterList);
             		Intent intent = new Intent(RenameActivity.this, CounterActivity.class);
             		intent.putExtra("exist", true);
             		intent.putExtra("name", input);

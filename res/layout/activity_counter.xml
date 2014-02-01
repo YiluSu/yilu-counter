@@ -40,13 +40,21 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/reset"
         android:text="@string/rename" />
+    
+    <Button
+        android:id="@+id/delete"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/rename"
+        android:text="@string/delete" />
 
     <Button
         android:id="@+id/summary"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/rename"
+        android:layout_below="@+id/delete"
         android:text="@string/stats" />
 
     <Button

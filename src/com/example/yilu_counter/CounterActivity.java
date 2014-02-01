@@ -17,6 +17,7 @@ public class CounterActivity extends Activity {
 	private Button click;
 	private Button reset;
 	private Button rename;
+	private Button delete;
 	private Button summary;
 	private Button back;
 	private ArrayList<CounterModel> counterList;
@@ -32,13 +33,13 @@ public class CounterActivity extends Activity {
 		click = (Button)findViewById(R.id.click);
 		reset = (Button)findViewById(R.id.reset);
 		rename = (Button)findViewById(R.id.rename);
+		delete = (Button)findViewById(R.id.delete);
 		summary = (Button)findViewById(R.id.summary);
 		back = (Button)findViewById(R.id.back);
 		
 		count = 0;
 		Intent intent = getIntent();
 		input = intent.getStringExtra("name");
-		System.out.println("name " + input);
 		
 		counterList = dataHandler.loadFromFile();
 		/* if not new counter, get old count */
@@ -55,6 +56,7 @@ public class CounterActivity extends Activity {
 		click.setOnClickListener(new ClickButtonListener());
 		reset.setOnClickListener(new ResetButtonListener());
 		rename.setOnClickListener(new RenameButtonListener());
+		delete.setOnClickListener(new DeleteButtonListener());
 		summary.setOnClickListener(new SummaryButtonListener());
 		back.setOnClickListener(new BackButtonListener());
 	}
@@ -69,7 +71,7 @@ public class CounterActivity extends Activity {
 			counterList.get(pos).writeCount(count);
 			counterList.get(pos).appendDate();
         	dataHandler.saveToFile(counterList);
-			click.setText(input + "\n\n" + count + "\n");
+        	click.setText("\nCounter name: " + input + "\n\n" + "Count:  " + count + "\n");
 		}
 
 	}
@@ -84,8 +86,7 @@ public class CounterActivity extends Activity {
 			counterList.get(pos).writeCount(count);
 			counterList.get(pos).appendDate();
         	dataHandler.saveToFile(counterList);
-			click.setText(input + "\n\n" + count + "\n");
-			
+			click.setText("\nCounter name: " + input + "\n\n" + "Count:  " + count + "\n");
 		}
 
 	}
@@ -99,6 +100,25 @@ public class CounterActivity extends Activity {
     		intent.putExtra("exist", false);
     		intent.putExtra("old", input);
     		startActivity(intent);
+		}
+
+	}
+	
+	class DeleteButtonListener implements OnClickListener {
+
+		@Override
+		public void onClick(View v) {
+			// TODO Auto-generated method stub
+			Intent intent = new Intent(CounterActivity.this, CounterListActivity.class);
+			for (int i = 0; i < counterList.size(); i++) {
+				if (counterList.get(i).readName().equals(input)) {
+					counterList.remove(i);
+					dataHandler.saveToFile(counterList);
+					break;
+				}
+			}
+    		startActivity(intent);
+    		finish();
 		}
 
 	}
@@ -142,7 +162,7 @@ public class CounterActivity extends Activity {
 	@Override
 	public void onStart() {
 		super.onStart();
-		click.setText(input + "\n\n" + count + "\n");
+		click.setText("\nCounter name: " + input + "\n\n" + "Count:  " + count + "\n");
 	}
 
 }

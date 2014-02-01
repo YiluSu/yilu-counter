@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
-import java.util.Date;
 
 import android.content.Context;
 
@@ -17,7 +16,7 @@ import com.google.gson.Gson;
 
 public class DataHandler {
 
-	private static final String FILENAME = "counter961.sav";
+	private static final String FILENAME = "counter954.sav";
 
 	private ArrayList<CounterModel> counterList;
 	private Gson gson = new Gson();
@@ -30,8 +29,10 @@ public class DataHandler {
 
 	/* Load counterList from the file */
 	public ArrayList<CounterModel> loadFromFile() {
+		System.out.println("load?");
 		counterList = new ArrayList<CounterModel> ();
 		try {
+			System.out.println("try?");
 			FileInputStream fis = context.openFileInput(FILENAME);
 			BufferedReader in = new BufferedReader(new InputStreamReader(fis));
 			String line = in.readLine();
@@ -47,6 +48,7 @@ public class DataHandler {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		System.out.println("done loading");
         return counterList;
 	}	
 	

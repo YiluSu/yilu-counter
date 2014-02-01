@@ -12,7 +12,7 @@
     <string name="create">Create</string>
     <string name="exist">The name you entered already exist, please try a different name</string>
     <string name="title_activity_counter">CounterActivity</string>
-    <string name="click">Click the button below to increment</string>
+    <string name="click">Click the button above to increment</string>
     <string name="reset">Reset</string>
     <string name="rename">Rename</string>
     <string name="stats">Summary</string>
@@ -24,5 +24,6 @@
     <string name="title_activity_summary">SummaryActivity</string>
     <string name="title_activity_counter_list">CounterListActivity</string>
     <string name="view_title">Existing ounters:</string>
+    <string name="delete">Delete</string>
 
 </resources>
