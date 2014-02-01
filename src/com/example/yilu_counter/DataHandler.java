@@ -16,7 +16,7 @@ import com.google.gson.Gson;
 
 public class DataHandler {
 
-	private static final String FILENAME = "counter999.sav";
+	private static final String FILENAME = "counter997.sav";
 
 	private ArrayList<CounterModel> counterList;
 	private Gson gson = new Gson();
@@ -40,9 +40,15 @@ public class DataHandler {
 			int oo = 0;
 			while (line != null) {
 				System.out.println(oo+"");
+				System.out.println(line + "       linelinelineline");
 				oo++;
+				System.out.println("hahahaha");
+				CounterModel tem = new CounterModel("ppp");
+				System.out.println(tem.toString());
 				CounterModel json=gson.fromJson(line, CounterModel.class);
+				System.out.println("yiyiyiyiyiyiyiyi");
 				counterList.add(json);
+				System.out.println("ererererererer");
 				line = in.readLine();
 			}
 			System.out.println("load3333333333");

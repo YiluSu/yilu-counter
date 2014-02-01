@@ -14,9 +14,9 @@ public class CounterModel{
 	/* initialize the counter model */
 	public CounterModel(String input) {
 		// TODO Auto-generated constructor stub
-		name = input;
-		count = 0;
-		dateList = new ArrayList<Date>();
+		this.name = input;
+		this.count = 0;
+		this.dateList = new ArrayList<Date>();
 	}
 	
 	public int readCount() {

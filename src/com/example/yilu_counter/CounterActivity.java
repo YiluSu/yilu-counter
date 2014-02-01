@@ -1,6 +1,8 @@
 package com.example.yilu_counter;
 
 import java.util.ArrayList;
+import java.util.Date;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -78,6 +80,15 @@ public class CounterActivity extends Activity {
         	dataHandler.saveToFile(counterList);
         	System.out.println("aaaaaaaaaaaaaa4444444");
 			click.setText(input + "\n\n" + count + "\n");
+			
+			
+//			count++;
+//			setResult(RESULT_OK);
+//			//String lText=(text+ new Date(System.currentTimeMillis())+clicked).toString();
+//			DataObject obj = new DataObject(text,new Date(System.currentTimeMillis()),clicked);
+//			tweets.add(obj);
+//			saveInFile(obj);
+//			adapter.notifyDataSetChanged();
 		}
 
 	}
