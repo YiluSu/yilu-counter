@@ -16,21 +16,17 @@ public class CounterListActivity extends Activity {
 	private ListView listView;
 	private ArrayList<CounterModel> counterList;
 	private ArrayAdapter<CounterModel> adapter;
+	private DataHandler dataHandler = new DataHandler(this);
 	private String input;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_counter_list);
-
 		
 		listView=(ListView)findViewById(R.id.listView);
 		listView.setOnItemClickListener(new listOnItemClickListener());
 		
 	}
-//	
-//	public void sortList() {
-//		counterList=counterList.sortCounterList();
-//	}
 	
 	class listOnItemClickListener implements OnItemClickListener {
 
@@ -38,25 +34,19 @@ public class CounterListActivity extends Activity {
 		public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 				long arg3) {
 			// TODO Auto-generated method stub
-//			counterList = sortCounterList(counterList);
 			input = counterList.get(arg2).readName();
 			Intent intent = new Intent(CounterListActivity.this, CounterActivity.class);
 			intent.putExtra("name", input);
 			startActivity(intent);
 		}
-		
 	}
-	
-
 	
 	@Override
 	protected void onStart() {
-		
-		adapter = new ArrayAdapter<CounterModel>(this,
-				R.layout.single_view, counterList);
-		listView.setAdapter(adapter);
-		
 		super.onStart();
+		counterList = dataHandler.loadFromFile();
+		adapter = new ArrayAdapter<CounterModel>(this,R.layout.single_view,counterList);
+		listView.setAdapter(adapter);
 	}
 
 	@Override

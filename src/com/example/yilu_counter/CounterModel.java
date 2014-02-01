@@ -3,13 +3,15 @@ package com.example.yilu_counter;
 import java.util.ArrayList;
 import java.util.Date;
 
+
 public class CounterModel{
+	
 	/* counter name */
 	private String name;
-	/* total number of counts */
-	private int count;
 	/* dates clicked for the counter */
 	private ArrayList<Date> dateList;
+	/* total number of counts */
+	private int count;
 
 	/* initialize the counter model */
 	public CounterModel(String input) {
@@ -40,7 +42,7 @@ public class CounterModel{
 		dateList.add(new Date());
 	}
 	
-	public ArrayList<Date> dateList() {
+	public ArrayList<Date> readDateList() {
 		return dateList;
 	}
 	
@@ -48,12 +50,27 @@ public class CounterModel{
 		dateList.clear();
 	}
 	
+	public void writeDate(ArrayList<Date> newDateList) {
+		System.out.println("size:      " + newDateList.size());
+		for (int i = 0; i < newDateList.size(); i++) {
+			dateList.add(newDateList.get(i));
+		}
+	}
+	
 	public String readable()
 	{
 		return name + "\t     Count:" + count;
 	}
-
-	public void sortCounterList() {
-		
+	
+	public String toString() {
+		String re = this.name;
+		int a = 15 - this.name.length();
+		String bla = "\t";
+//		System.out.println("    " + a + "    ");
+		for (int i = 0; i < a; i++) {
+			re = re + bla;
+		}
+		return re + "  " + this.count;
 	}
+
 }

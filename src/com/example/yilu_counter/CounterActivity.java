@@ -1,8 +1,6 @@
 package com.example.yilu_counter;
 
 import java.util.ArrayList;
-import java.util.Date;
-
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -40,18 +38,15 @@ public class CounterActivity extends Activity {
 		count = 0;
 		Intent intent = getIntent();
 		input = intent.getStringExtra("name");
+		System.out.println("name " + input);
 		
-//		dataHandler ;
 		counterList = dataHandler.loadFromFile();
 		/* if not new counter, get old count */
-		if (intent.getBooleanExtra("exist", true)) {
-			System.out.println("old counter");
-			for (int i=0; i<counterList.size(); i++) {
-				if (counterList.get(i).readName().equals(input)) {
-					pos = i;
-					count = counterList.get(i).readCount();
-					break;
-				}
+		for (int i=0; i<counterList.size(); i++) {
+			if (counterList.get(i).readName().equals(input)) {
+				pos = i;
+				count = counterList.get(i).readCount();
+				break;
 			}
 		}
 		
@@ -62,7 +57,6 @@ public class CounterActivity extends Activity {
 		rename.setOnClickListener(new RenameButtonListener());
 		summary.setOnClickListener(new SummaryButtonListener());
 		back.setOnClickListener(new BackButtonListener());
-		System.out.println("CounterActivity " + pos);
 	}
 	
 	class ClickButtonListener implements OnClickListener {
@@ -72,23 +66,10 @@ public class CounterActivity extends Activity {
 			// TODO Auto-generated method stub
 			count++;
 			/*  save data */
-			System.out.println("aaaaaaaaaaaaaa1111111");
 			counterList.get(pos).writeCount(count);
-			System.out.println("aaaaaaaaaaaaaa2222222");
 			counterList.get(pos).appendDate();
-			System.out.println("aaaaaaaaaaaaaa3333333");
         	dataHandler.saveToFile(counterList);
-        	System.out.println("aaaaaaaaaaaaaa4444444");
 			click.setText(input + "\n\n" + count + "\n");
-			
-			
-//			count++;
-//			setResult(RESULT_OK);
-//			//String lText=(text+ new Date(System.currentTimeMillis())+clicked).toString();
-//			DataObject obj = new DataObject(text,new Date(System.currentTimeMillis()),clicked);
-//			tweets.add(obj);
-//			saveInFile(obj);
-//			adapter.notifyDataSetChanged();
 		}
 
 	}
@@ -156,6 +137,12 @@ public class CounterActivity extends Activity {
 	@Override
 	public void onBackPressed() {
 		Toast.makeText(CounterActivity.this,R.string.warning, Toast.LENGTH_SHORT).show();
+	}
+	
+	@Override
+	public void onStart() {
+		super.onStart();
+		click.setText(input + "\n\n" + count + "\n");
 	}
 
 }

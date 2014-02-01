@@ -42,14 +42,9 @@ public class CreateActivity extends Activity {
             			Toast.LENGTH_SHORT).show();
             } else {
             	/* check if counter already exist */
-            	System.out.println("000000000000000");
             	Boolean exist = false;
-//            	dataHandler = ;
-            	
             	counterList = dataHandler.loadFromFile();
-            	System.out.println("counterList.size()" + counterList.size());
             	for (int i=0; i<counterList.size(); i++) {
-            		System.out.println("check loop");
             		if (counterList.get(i).readName().equals(input)) {
             			exist = true;
             			break;
@@ -58,7 +53,6 @@ public class CreateActivity extends Activity {
             	if (exist) {
             		Toast.makeText(CreateActivity.this,R.string.exist,Toast.LENGTH_SHORT).show();
             	} else {
-            		System.out.println("1111111111111111111111");
             		/* initialize new counter */
             		CounterModel newCounter = new CounterModel(input);
             		counterList.add(newCounter);
